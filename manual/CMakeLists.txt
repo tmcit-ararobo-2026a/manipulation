@@ -8,11 +8,15 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 add_executable(three_wheel_node src/three_wheel_node.cpp)
-ament_target_dependencies(three_wheel_node rclcpp)
+ament_target_dependencies(three_wheel_node 
+rclcpp
+sensor_msgs
+)
 
 target_include_directories(three_wheel_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
