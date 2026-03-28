@@ -15,7 +15,7 @@ public:
     }
     void sub_joy_three(const sensor_msgs::msg::Joy::SharedPtr msg)
     {
-        RCLCPP_INFO(this->get_logger(), "get controller : [%f,%f]", msg->axes[0], msg->buttons[1]);
+        RCLCPP_INFO(this->get_logger(), "get controller : [%f,%d]", msg->axes[0], msg->buttons[1]);
     }
 };
 
