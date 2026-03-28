@@ -1,5 +1,6 @@
 #include <rclcpp/rclcpp.hpp>
 
+#include "sensor_msgs/msg/joy.hpp"
 class ThreeWheelNode : public rclcpp::Node
 {
 private:
