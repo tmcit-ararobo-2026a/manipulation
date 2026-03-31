@@ -7,7 +7,6 @@ class ThreeWheelNode : public rclcpp::Node
 private:
     rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr sub_joy;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr twist;
-    geometry_msgs::msg::Twist send_data;
 
 public:
     ThreeWheelNode() : Node("three_wheel_node")
@@ -19,6 +18,7 @@ public:
     }
     void sub_joy_three(const sensor_msgs::msg::Joy::SharedPtr msg)
     {
+        auto send_data = geometry_msgs::msg::Twist();
         RCLCPP_INFO(this->get_logger(), "get controller : [%f,%d]", msg->axes[0], msg->buttons[1]);
         send_data.linear.x  = msg->axes[1];  // 左側スティック（上下方向
         send_data.linear.y  = msg->axes[0];  // 左側スティック（左右方向）
