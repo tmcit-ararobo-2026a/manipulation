@@ -5,16 +5,16 @@
 class ThreeWheelNode : public rclcpp::Node
 {
 private:
-    rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr sub_joy;
-    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr twist;
+    rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr sub_joy_;
+    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr twist_;
 
 public:
     ThreeWheelNode() : Node("three_wheel_node")
     {
-        sub_joy = this->create_subscription<sensor_msgs::msg::Joy>(
+        sub_joy_ = this->create_subscription<sensor_msgs::msg::Joy>(
             "joy", 10, std::bind(&ThreeWheelNode::sub_joy_three, this, std::placeholders::_1)
         );
-        twist = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
+        twist_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
     }
     void sub_joy_three(const sensor_msgs::msg::Joy::SharedPtr msg)
     {
@@ -23,7 +23,7 @@ public:
         send_data.linear.x  = msg->axes[1];  // 左側スティック（上下方向
         send_data.linear.y  = msg->axes[0];  // 左側スティック（左右方向）
         send_data.angular.z = msg->axes[3];  // 右側スティック（左右方向）
-        twist->publish(send_data);
+        twist_->publish(send_data);
     }
 };
 
