@@ -13,19 +13,19 @@ find_package(geometry_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-add_executable(three_wheel_node src/three_wheel_node.cpp)
-ament_target_dependencies(three_wheel_node 
+add_executable(joy_to_twist_node src/joy_to_twist_node.cpp)
+ament_target_dependencies(joy_to_twist_node 
 rclcpp
 sensor_msgs
 geometry_msgs
 )
 
-target_include_directories(three_wheel_node PUBLIC
+target_include_directories(joy_to_twist_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 
   install(TARGETS
-  three_wheel_node
+  joy_to_twist_node
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
