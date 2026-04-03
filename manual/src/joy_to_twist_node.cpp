@@ -2,17 +2,17 @@
 
 #include "geometry_msgs/msg/twist.hpp"
 #include "sensor_msgs/msg/joy.hpp"
-class ThreeWheelNode : public rclcpp::Node
+class JoyToTwistNode : public rclcpp::Node
 {
 private:
     rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr sub_joy_;
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr twist_;
 
 public:
-    ThreeWheelNode() : Node("three_wheel_node")
+    JoyToTwistNode() : Node("joy_to_twist_node")
     {
         sub_joy_ = this->create_subscription<sensor_msgs::msg::Joy>(
-            "joy", 10, std::bind(&ThreeWheelNode::sub_joy_three, this, std::placeholders::_1)
+            "joy", 10, std::bind(&JoyToTwistNode::sub_joy_three, this, std::placeholders::_1)
         );
         twist_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
     }
@@ -30,7 +30,7 @@ public:
 int main(int argc, char* argv[])
 {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<ThreeWheelNode>());
+    rclcpp::spin(std::make_shared<JoyToTwistNode>());
     rclcpp::shutdown();
     return 0;
 }
