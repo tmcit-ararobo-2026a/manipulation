@@ -22,7 +22,7 @@ public:
         double y = msg->axes[1];  // 左側スティック（左右方向）
         double z = msg->axes[3];  // 右側スティック（左右方向）
         if (std::abs(x) < 0.3) x = 0.0;
-        if (std::abs(y) < 0.3) x = 0.0;
+        if (std::abs(y) < 0.3) y = 0.0;
         if (std::abs(z) < 0.3) z = 0.0;
         auto send_data = geometry_msgs::msg::Twist();
         RCLCPP_INFO(this->get_logger(), "get controller : [%f,%d]", msg->axes[0], msg->buttons[1]);
