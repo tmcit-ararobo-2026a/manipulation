@@ -34,5 +34,3 @@ public:
     }
 };
 }  // namespace manual
-
-RCLCPP_COMPONENTS_REGISTER_NODE(manual::JoyToTwistNode)
