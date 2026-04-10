@@ -33,4 +33,11 @@ public:
         twist_->publish(send_data);
     }
 };
+int main(int argc, char* argv[])
+{
+    rclcpp::init(argc, argv);
+    rclcpp::spin(std::make_shared<JoyToTwistNode>());
+    rclcpp::shutdown();
+    return 0;
+}
 }  // namespace manual
