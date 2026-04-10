@@ -36,7 +36,7 @@ public:
 int main(int argc, char* argv[])
 {
     rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<JoyToTwistNode>());
+    rclcpp::spin(std::make_shared<manual::JoyToTwistNode>());
     rclcpp::shutdown();
     return 0;
 }
