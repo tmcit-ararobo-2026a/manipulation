@@ -1,7 +1,6 @@
 #include <rclcpp/rclcpp.hpp>
 
 #include "geometry_msgs/msg/twist.hpp"
-#include "rclcpp_components/register_node_macro.hpp"
 #include "sensor_msgs/msg/joy.hpp"
 namespace manual {
 class JoyToTwistNode : public rclcpp::Node
@@ -28,9 +27,9 @@ public:
         if (std::abs(z) < 0.3) z = 0.0;
         auto send_data = geometry_msgs::msg::Twist();
         RCLCPP_INFO(this->get_logger(), "get controller : [%f,%d]", msg->axes[0], msg->buttons[1]);
-        send_data.linear.x  = x * 20;
-        send_data.linear.y  = y * 20;
-        send_data.angular.z = z * 20;
+        send_data.linear.x  = x * 5;
+        send_data.linear.y  = y * 5;
+        send_data.angular.z = z * 5;
         twist_->publish(send_data);
     }
 };
