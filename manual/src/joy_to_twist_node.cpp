@@ -10,7 +10,7 @@ private:
     rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr twist_;
 
 public:
-    JoyToTwistNode(const rclcpp::NodeOptions& options) : Node("joy_to_twist_node", options)
+    JoyToTwistNode() : Node("joy_to_twist_node")
     {
         sub_joy_ = this->create_subscription<sensor_msgs::msg::Joy>(
             "joy", 10, std::bind(&JoyToTwistNode::sub_joy_three, this, std::placeholders::_1)
