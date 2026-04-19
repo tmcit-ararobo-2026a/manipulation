@@ -61,4 +61,3 @@ _autosave-*
 *.kicad_pcb-bak
 fp-info-cache
 **/.history/*.vc.db
-*.vc.db
