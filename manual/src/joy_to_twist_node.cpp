@@ -22,17 +22,16 @@ public:
     }
     void sub_joy_three(const sensor_msgs::msg::Joy::SharedPtr msg)
     {
-        double x         = msg->axes[0];  // 左側スティック（上下方向
-        double y         = msg->axes[1];  // 左側スティック（左右方向）
-        double z         = msg->axes[3];  // 右側スティック（左右方向）
-        int round_button = msg->buttons[1];
+        double x = msg->axes[0];  // 左側スティック（上下方向
+        double y = msg->axes[1];  // 左側スティック（左右方向）
+        double z = msg->axes[3];  // 右側スティック（左右方向）
         if (std::abs(x) < 0.3) x = 0.0;
         if (std::abs(y) < 0.3) y = 0.0;
         if (std::abs(z) < 0.3) z = 0.0;
         auto arm_data  = std_msgs::msg::Float64();
         auto send_data = geometry_msgs::msg::Twist();
         RCLCPP_INFO(this->get_logger(), "get controller : [%f,%d]", msg->axes[0], msg->buttons[1]);
-        arm_data.data       = round_button;
+        arm_data.data       = msg->buttons[1] + (-1 * msg->buttons[3]);
         send_data.linear.x  = x * 5;
         send_data.linear.y  = y * 5;
         send_data.angular.z = z * 5;
