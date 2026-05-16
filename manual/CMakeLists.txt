@@ -22,6 +22,12 @@ geometry_msgs
 )
 add_executable(button src/button.cpp)
 ament_target_dependencies(button rclcpp sensor_msgs std_msgs) 
+add_executable(three_wheel_node src/three_wheel_node.cpp)
+ament_target_dependencies(three_wheel_node 
+rclcpp
+geometry_msgs
+std_msgs
+)
 
 target_include_directories(joy_to_twist_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -32,9 +38,14 @@ target_include_directories(button PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 
+target_include_directories(three_wheel_node PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+
 install(TARGETS
 joy_to_twist_node
 button
+three_wheel_node
 DESTINATION lib/${PROJECT_NAME}
 )
 
